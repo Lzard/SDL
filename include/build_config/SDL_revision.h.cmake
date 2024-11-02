@@ -31,9 +31,21 @@
 #cmakedefine SDL_VENDOR_INFO "@SDL_VENDOR_INFO@"
 
 #ifdef SDL_VENDOR_INFO
-#define SDL_REVISION "@SDL_REVISION@ (" SDL_VENDOR_INFO ")"
+#cmakedefine SDL_REVISION "@SDL_REVISION@ (" SDL_VENDOR_INFO ")"
 #else
-#define SDL_REVISION "@SDL_REVISION@"
+#cmakedefine SDL_REVISION "@SDL_REVISION@"
+#endif
+
+#ifndef SDL_REVISION
+#ifdef SDL_VENDOR_INFO
+#define SDL_REVISION SDL_VENDOR_INFO
+#else
+#define SDL_REVISION ""
+#endif
+#endif
+
+#ifndef SDL_VENDOR_INFO
+#define SDL_VENDOR_INFO ""
 #endif
 
 #endif /* SDL_revision_h_ */
